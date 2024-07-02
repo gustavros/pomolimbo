@@ -17,12 +17,8 @@
 ## 💻 Techs e libs usadas
 
 - [Next.js 14](https://nextjs.org/)
-- [Next Auth](https://next-auth.js.org/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [Shadcn UI](https://ui.shadcn.com/)
-- [Prisma ORM](https://www.prisma.io/)
-- [PostgreSQL](https://www.postgresql.org/)
-- [Neon Tech](https://neon.tech/)
 
 > Também usei o Prettier para ajudar na formatação e padronização do projeto.
 
