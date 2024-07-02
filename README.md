@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# pomolimbo 🔔
 
-## Getting Started
+> O pomolimbo é um temporizador pomodoro. O objetivo desse projeto foi facilitar a utilização da técnica pomodoro e brown noise (ondas binaurais) para uma melhor produtividade. O projeto foi criado utilizando o Next.js 14, TailwindCSS e Shadcn UI e v0 (vercel).
 
-First, run the development server:
+# Versão desktop 🖥
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Em desenvolvimento...
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Versão mobile 📱
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+![Mobile](https://i.imgur.com/tD4vBn7.png)
+![Mobile-02](https://i.imgur.com/Scideat.png)
+![Mobile-03](https://i.imgur.com/4Pk1dLr.gif)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### ⚙ Ajustes e melhorias
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## 💻 Techs e libs usadas
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js 14](https://nextjs.org/)
+- [Next Auth](https://next-auth.js.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Shadcn UI](https://ui.shadcn.com/)
+- [Prisma ORM](https://www.prisma.io/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Neon Tech](https://neon.tech/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+> Também usei o Prettier para ajudar na formatação e padronização do projeto.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[⬆ Voltar ao topo](#pomolimbo)<br>
