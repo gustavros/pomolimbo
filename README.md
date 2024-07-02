@@ -8,9 +8,8 @@
 
 # Versão mobile 📱
 
-![Mobile](https://i.imgur.com/tD4vBn7.png)
-![Mobile-02](https://i.imgur.com/Scideat.png)
-![Mobile-03](https://i.imgur.com/4Pk1dLr.gif)
+![Mobile](https://i.imgur.com/N0hqmDS.png)
+![Mobile-02](https://i.imgur.com/Yw30hb6.png)
 
 ### ⚙ Ajustes e melhorias
 
