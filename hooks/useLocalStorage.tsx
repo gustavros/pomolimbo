@@ -1,15 +1,14 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
-interface localStorageContext {
+interface LocalStorageContextType {
   setItem: (key: string, value: string) => void;
   getItem: (key: string) => string | null;
-
   removeItem: (key: string) => void;
 }
 
-export const LocalStorageContext = createContext<localStorageContext>({
+export const LocalStorageContext = createContext<LocalStorageContextType>({
   setItem: () => {},
   getItem: () => null,
   removeItem: () => {},
@@ -20,16 +19,29 @@ export const LocalStorageProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const setItem = (key: string, value: string) => {
-    localStorage.setItem(key, value);
+    if (isClient) {
+      localStorage.setItem(key, value);
+    }
   };
 
   const getItem = (key: string) => {
-    return localStorage.getItem(key);
+    if (isClient) {
+      return localStorage.getItem(key);
+    }
+    return null;
   };
 
   const removeItem = (key: string) => {
-    localStorage.removeItem(key);
+    if (isClient) {
+      localStorage.removeItem(key);
+    }
   };
 
   return (
