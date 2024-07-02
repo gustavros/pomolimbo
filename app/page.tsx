@@ -34,11 +34,26 @@ import {
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 
-const finishedSound = new Audio("/mixkit-tick-tock-clock-timer-1045.wav");
-const buttonClickSound = new Audio("/mixkit-retro-game-notification-212.wav");
-
 export default function App() {
   const { setItem, getItem } = useContext(LocalStorageContext);
+
+  const [finishedSound, setFinishedAudio] = useState<HTMLAudioElement | null>(
+    null
+  );
+  const [buttonClickSound, setButtonClickAudio] =
+    useState<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    const finishedAudio = new Audio("/mixkit-tick-tock-clock-timer-1045.wav");
+    finishedAudio.volume = 0.4;
+    setFinishedAudio(finishedAudio);
+
+    const buttonClickAudio = new Audio(
+      "/mixkit-retro-game-notification-212.wav"
+    );
+    buttonClickAudio.volume = 0.2;
+    setButtonClickAudio(buttonClickAudio);
+  }, []);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -56,10 +71,6 @@ export default function App() {
   const minutes = Math.floor(secondsAmount / 60);
 
   useEffect(() => {
-    finishedSound.volume = 0.1;
-  }, []);
-
-  useEffect(() => {
     if (!isPlaying) {
       return;
     }
@@ -67,13 +78,13 @@ export default function App() {
     if (secondsAmount === 0) {
       setIsPlaying(false);
 
-      finishedSound.play();
+      finishedSound?.play();
 
       toast("Your pomodoro has finished", {
         description: "You can now take a short break",
         action: {
           label: "Dismiss",
-          onClick: () => finishedSound.pause(),
+          onClick: () => finishedSound?.pause(),
         },
       });
 
@@ -92,9 +103,7 @@ export default function App() {
   const toggle = () => {
     setIsPlaying(!isPlaying);
 
-    buttonClickSound.volume = 0.1;
-
-    buttonClickSound.play();
+    buttonClickSound?.play();
   };
 
   const handleChangeMinutes = () => {
@@ -111,11 +120,9 @@ export default function App() {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-background">
       <div className="flex flex-col items-center mt-auto">
-        <div className="flex flex-col items-center gap-4 pb-8">
-          <h1 className="text-4xl font-bold text-center">
-            Pomolimbo - The Pomodoro Timer
-          </h1>
-        </div>
+        <h1 className="text-4xl font-bold text-center pb-4">
+          Pomolimbo - The Pomodoro Timer
+        </h1>
         <div className="flex flex-col items-center gap-8">
           <div className="text-8xl font-bold text-primary w-96 flex items-center justify-center">
             <span>{minutes.toString().padStart(2, "0")}</span>:
