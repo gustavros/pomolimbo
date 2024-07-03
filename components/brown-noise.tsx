@@ -1,14 +1,13 @@
+"use client";
+
 import { useContext, useRef, useState } from "react";
 import { PlayIcon, PauseIcon, CircleStopIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { LocalStorageContext } from "@/hooks/useLocalStorage";
 
 export default function BrownNoise() {
   const audioRef = useRef<HTMLAudioElement>(null);
-
-  const { setItem, getItem } = useContext(LocalStorageContext);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(5);
@@ -17,10 +16,7 @@ export default function BrownNoise() {
     if (audioRef.current) {
       setIsPlaying(true);
 
-      const volumeStorageLocal = getItem("volume");
-
-      audioRef.current.volume =
-        Number(volumeStorageLocal) / 100 || volume / 100;
+      audioRef.current.volume = volume / 100;
 
       audioRef.current.play();
 
@@ -43,8 +39,6 @@ export default function BrownNoise() {
       setVolume(value[0]);
 
       audioRef.current.volume = value[0] / 100;
-
-      setItem("volume", value[0].toString());
     }
   };
 

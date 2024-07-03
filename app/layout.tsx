@@ -3,7 +3,6 @@ import { Space_Grotesk } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { LocalStorageProvider } from "@/hooks/useLocalStorage";
 
 const grotesk = Space_Grotesk({ subsets: ["latin"] });
 
@@ -20,25 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="./favicon.ico"
-        />
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon.ico" />
       </head>
       <body className={grotesk.className}>
-        <LocalStorageProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableColorScheme
-          >
-            {children}
+        <ThemeProvider attribute="class" defaultTheme="dark" enableColorScheme>
+          {children}
 
-            <Toaster />
-          </ThemeProvider>
-        </LocalStorageProvider>
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
