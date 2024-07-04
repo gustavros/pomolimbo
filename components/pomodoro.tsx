@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -37,13 +37,13 @@ export default function Pomodoro() {
 
   useEffect(() => {
     const finishedAudio = new Audio("/mixkit-tick-tock-clock-timer-1045.wav");
-    finishedAudio.volume = 0.4;
+    finishedAudio.volume = 0.3;
     setFinishedAudio(finishedAudio);
 
     const buttonClickAudio = new Audio(
       "/mixkit-retro-game-notification-212.wav"
     );
-    buttonClickAudio.volume = 0.2;
+    buttonClickAudio.volume = 0.1;
     setButtonClickAudio(buttonClickAudio);
   }, []);
 
@@ -116,9 +116,9 @@ export default function Pomodoro() {
 
   return (
     <>
-      <h1 className="text-4xl font-bold text-center pb-4">
-        Pomolimbo - The Pomodoro Timer
-      </h1>
+      <div className="flex gap-4 items-center pb-8">
+        <h1 className="text-2xl font-bold">pomolimbo - the timer</h1>
+      </div>
 
       <div className="flex flex-col items-center gap-8">
         <div className="text-8xl font-bold text-primary w-96 flex items-center justify-center">
@@ -137,25 +137,21 @@ export default function Pomodoro() {
             <Button className="w-32" onClick={toggle}>
               {isPlaying ? "Pause" : "Start"}
             </Button>
-
-            <Button
-              className="w-fit"
-              variant="outline"
-              onClick={() => setSecondsAmount(initialMinutes * 60)}
-            >
-              Reset
-            </Button>
           </div>
 
-          <Separator orientation="vertical" />
+          {!isPlaying && (
+            <>
+              <Separator orientation="vertical" />
 
-          <Button
-            className="w-32"
-            variant="outline"
-            onClick={() => setIsDialogOpen(true)}
-          >
-            Settings
-          </Button>
+              <Button
+                className="w-32"
+                variant="outline"
+                onClick={() => setIsDialogOpen(true)}
+              >
+                Settings
+              </Button>
+            </>
+          )}
 
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogContent className="sm:max-w-[425px]">
