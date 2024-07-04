@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/png" sizes="32x32" href="./favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon.png" />
       </head>
       <body className={grotesk.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableColorScheme>
