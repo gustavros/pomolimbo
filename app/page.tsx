@@ -2,7 +2,6 @@ import { Separator } from "@/components/ui/separator";
 
 import BrownNoise from "@/components/brown-noise";
 import Pomodoro from "@/components/pomodoro";
-import { SelectSeparator } from "@/components/ui/select";
 
 export default function App() {
   return (
@@ -10,7 +9,7 @@ export default function App() {
       <div className="flex flex-col items-center mt-auto">
         <Pomodoro />
 
-        <SelectSeparator className="my-8" />
+        <Separator className="my-8" />
 
         <BrownNoise />
       </div>
