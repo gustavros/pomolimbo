@@ -49,7 +49,7 @@ export default function Pomodoro() {
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [newMinutes, setNewMinutes] = useState("");
+  const [newMinutes, setNewMinutes] = useState(0);
 
   // Atualiza initialMinutes quando storedValue mudar
   useEffect(() => {
@@ -67,6 +67,8 @@ export default function Pomodoro() {
   const seconds = secondsAmount % 60;
   const minutes = Math.floor(secondsAmount / 60);
 
+  const hour = Math.floor(minutes / 60);
+
   useEffect(() => {
     if (!isPlaying) {
       return;
@@ -83,6 +85,7 @@ export default function Pomodoro() {
           label: "Dismiss",
           onClick: () => finishedSound?.pause(),
         },
+        duration: 10000,
       });
 
       return;
@@ -104,12 +107,24 @@ export default function Pomodoro() {
   };
 
   const handleChangeMinutes = () => {
-    const minutes = Number(newMinutes);
+    const minutes = newMinutes;
+
+    if (!minutes) {
+      return toast.error("Please enter a value");
+    }
+
+    if (minutes <= 0) {
+      return toast.error("The value must be greater than 0");
+    } else if (minutes > 999) {
+      toast.error("The value must be less than 60");
+
+      return;
+    }
 
     setStoredValue(minutes);
 
-    setInitialMinutes(minutes); // Atualiza o estado de initialMinutes
-    setSecondsAmount(minutes * 60); // Atualiza o estado de secondsAmount
+    setInitialMinutes(minutes);
+    setSecondsAmount(minutes * 60);
 
     setIsDialogOpen(false);
   };
@@ -121,7 +136,7 @@ export default function Pomodoro() {
       </div>
 
       <div className="flex flex-col items-center gap-8">
-        <div className="text-8xl font-bold text-primary w-96 flex items-center justify-center">
+        <div className="text-8xl font-bold text-primary w-full flex items-center justify-center">
           <span>{minutes.toString().padStart(2, "0")}</span>:
           <span>{seconds.toString().padStart(2, "0")}</span>
         </div>
@@ -129,12 +144,12 @@ export default function Pomodoro() {
         <Progress
           value={(secondsAmount / (initialMinutes * 60)) * 100}
           max={100}
-          className="w-96"
+          className="w-full"
         />
 
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-1">
-            <Button className="w-32" onClick={toggle}>
+            <Button className="w-24 sm:w-32" onClick={toggle}>
               {isPlaying ? "Pause" : "Start"}
             </Button>
           </div>
@@ -144,7 +159,7 @@ export default function Pomodoro() {
               <Separator orientation="vertical" />
 
               <Button
-                className="w-32"
+                className="w-24 sm:w-32"
                 variant="outline"
                 onClick={() => setIsDialogOpen(true)}
               >
@@ -166,17 +181,17 @@ export default function Pomodoro() {
                   <Input
                     id="minutes"
                     className="col-span-3"
-                    type="text"
+                    type="number"
                     placeholder="30"
                     defaultValue={initialMinutes}
                     min={1}
                     max={60}
                     value={newMinutes}
-                    onChange={(e) => setNewMinutes(e.target.value)}
+                    onChange={(e) => setNewMinutes(e.target.valueAsNumber)}
                   />
 
                   <small className="text-muted-foreground">
-                    The min and max values are 1 and 60
+                    The min and max values are 1 and 999
                   </small>
                 </div>
 

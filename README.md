@@ -13,6 +13,9 @@
 
 ### ⚙ Ajustes e melhorias
 
+- [x] Remover tipo "text" do input de minutos.
+- [x] Adicionar um limite de 999 minutos no input de minutos.
+- [x] Aumentar duração de toast quando finalizar.
 
 ## 💻 Techs e libs usadas
 
